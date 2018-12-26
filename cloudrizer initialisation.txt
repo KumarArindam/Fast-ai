@@ -1,0 +1,49 @@
+paste this in this in the startup script of the cloudrizer.
+
+----PRE TASK START----
+pip3 install fastai==0.7.0
+if pip -V | grep "python 3.6"
+then
+pip install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
+pip install torchvision
+pip install torchtext==0.2.3
+else
+pip3 install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
+pip3 install torchvision
+pip3 install torchtext==0.2.3
+fi
+----PRE TASK END----
+
+ln -s ~/clouderizer/fast.ai/data ~/clouderizer/fast.ai/fastai/courses/dl1/
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+pip3 install --upgrade pip
+pip3 install dataclasses
+pip3 uninstall numpy torchvision_nightly torch torch_nightly -y
+pip3 install torch_nightly -f https://download.pytorch.org/whl/nightly/cu92/torch_nightly.html --upgrade
+mkdir -p /content/.torch/
+mkdir -p /content/.fastai/
+echo data_path: /content/clouderizer/fastai-v1/data > ~/.fastai/config.yml
+echo model_path: /content/clouderizer/fastai-v1/out >> ~/.fastai/config.yml
+pip3 install fastai --upgrade
+
+
+
+or we can just paste the following in the setup script in the setup tab of the cloudrizer.
+
+curl https://raw.githubusercontent.com/ronaldokun/deep-learning-fastai/master/setup_clouderizer_with_colab.sh | bash
